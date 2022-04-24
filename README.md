@@ -2,7 +2,7 @@
 ____________
 **修改：增加了smartian工具和sFuzz工具，在运行前需要把/config/tools里的各个tool的run_solidity的行尾序列都改成LF（可以使用VSCode右下角修改）**
 
-e.g. python3 smartBugs.py --tool smartian --file dataset/for_smartian/x2y2.sol 
+e.g. python3 smartBugs.py --tool smartian --file dataset/for_smartian/x2y2.sol  (x2y2.sol内是x2y2合约的字节码，不是solidity代码，需要用这种命名方法才能跑)
 
 e.g. python3 smartBugs.py --tool sFuzz --file ../sfuzz_test/
 
