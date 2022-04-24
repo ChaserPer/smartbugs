@@ -233,7 +233,8 @@ def analyse_files(tool, file, logs, now, sarif_outputs, output_version, import_p
         else:
             file_path_in_repo = file.replace(import_path, '')  # file path relative to project's root directory
 
-        # solc_compiler = get_solc(file)   #安装solc可能会很耗时(网不好)  而且有些工具不需要solc  不过暂时还不知道哪些要哪些不要  最好根据工具加个if判断 要用solc就安装 不要的就pass 
+        if(tool!="smartian"):
+            solc_compiler = get_solc(file)   #安装solc可能会很耗时(网不好)  而且有些工具不需要solc  不过暂时还不知道哪些要哪些不要  最好根据工具加个if判断 要用solc就安装 不要的就pass 
 
         filename = os.path.basename(file)
         scripts  = os.path.join(TOOLS_CFG_PATH,tool)
@@ -244,7 +245,8 @@ def analyse_files(tool, file, logs, now, sarif_outputs, output_version, import_p
         shutil.copy(file, working_dir)
         working_bin_dir = f'{working_dir}/bin'
         shutil.copytree(scripts, working_bin_dir)
-        # shutil.copyfile(solc_compiler, f'{working_bin_dir}/solc')
+        if(tool!="smartian"):
+            shutil.copyfile(solc_compiler, f'{working_bin_dir}/solc')
 
         # bind directory path instead of file path to allow imports in the same directory
         if(tool!='sFuzz'):
